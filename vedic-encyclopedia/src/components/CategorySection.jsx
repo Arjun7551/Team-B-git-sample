@@ -23,7 +23,13 @@ export default function CategorySection() {
   ];
 
   return (
-    <section className="w-full mb-32">
+  <section
+  id="category"
+  className="w-full mb-32 scroll-mt-32"
+>
+
+
+
       <h3 className="text-3xl font-serif text-orange-900 mb-10 text-center">
         Explore Categories
       </h3>

@@ -24,9 +24,23 @@ export default function Navbar() {
       {open && (
         <nav className="w-full bg-white border-t border-orange-200">
           <div className="px-10 py-4 flex gap-10 text-orange-800">
-            <Link href="/">Home</Link>
-            <Link href="/encyclopedia">Encyclopedia</Link>
-            <Link href="/login">Admin Login</Link>
+            <Link href="/" onClick={() => setOpen(false)}>
+              Home
+            </Link>
+
+            
+            <Link href="/#category" onClick={() => setOpen(false)}>
+              Categories
+            </Link>
+
+            <Link href="/#about" onClick={() => setOpen(false)}>
+              About
+            </Link>
+
+
+            <Link href="/login" onClick={() => setOpen(false)}>
+              Admin Login
+            </Link>
           </div>
         </nav>
       )}

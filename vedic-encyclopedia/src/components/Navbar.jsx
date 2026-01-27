@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="menu-heading">Navigation</div>
 
         <ul>
-          <li onClick={goHome}>Home</li>
+         < li onClick={goHome}>Home</li>
           <li onClick={goCategories}>Categories</li>
           <li onClick={goAbout}>About</li>
         </ul>

@@ -1,6 +1,10 @@
 export default function HeroSection() {
   return (
-    <section className="w-full px-12 mb-24">
+    <section
+  id="home"
+  className="w-full px-12 mb-24 flex flex-col items-center text-center"
+>
+
       <div className="bg-gradient-to-r from-orange-200 via-orange-100 to-orange-200 rounded-[2.5rem] p-14 shadow-lg">
         <h2 className="text-4xl md:text-5xl font-serif text-center text-orange-900 mb-10">
           Discover Timeless Vedic Knowledge

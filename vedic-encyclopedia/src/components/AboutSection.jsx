@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <section className="mt-40">
+    <section id="about" className="mt-40 px-6 md:px-16">
       <h3 className="text-4xl font-serif text-orange-900 mb-10 text-center">
         About the Vedic Encyclopedia
       </h3>

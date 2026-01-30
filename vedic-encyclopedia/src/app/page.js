@@ -3,7 +3,7 @@ import HeroSection from "../components/HeroSection";
 import CategorySection from "../components/CategorySection";
 import AboutSection from "../components/AboutSection";
 import Footer from "../components/Footer";
-import Suggestion from "@/components/suggestion";
+import Link from "next/link";
 
 
 export default function HomePage() {
@@ -17,9 +17,9 @@ export default function HomePage() {
           <HeroSection />
           <CategorySection />
           <AboutSection />
-          <Suggestion/>
+          <h3 className="mb-[-40] mt-[50px] font-bold text-orange-900">Have Suggestions? <Link href={"/suggest"}>Click Here!</Link> </h3>
           <Footer />
-          
+         
         </div>
       </main>
     </>

@@ -261,3 +261,9 @@
   background: #f6cfa2;
   transform: translateX(-6px);
 }
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}

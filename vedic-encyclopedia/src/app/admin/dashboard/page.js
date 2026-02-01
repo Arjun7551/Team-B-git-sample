@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, LogOut, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 /* ✅ CATEGORY — ADMIN ONLY */
 import {
@@ -26,6 +27,7 @@ import {
 
 export default function AdminDashboard() {
   const router = useRouter();
+  const supabase = createClient();
   const [activeTab, setActiveTab] = useState('categories');
 
   /* ================= DATA ================= */
@@ -39,18 +41,17 @@ export default function AdminDashboard() {
   id: null,
 });
 
-
   useEffect(() => {
-  async function loadData() {
-    const cats = await getCategories();
-    const arts = await getArticles();
+    async function loadData() {
+      const cats = await getCategories();
+      const arts = await getArticles();
 
-    setCategories(cats || []);
-    setArticles(arts || []);
-  }
+      setCategories(cats || []);
+      setArticles(arts || []);
+    }
 
-  loadData();
-}, []);
+    loadData();
+  }, []);
 
 
   /* ================= CATEGORY ================= */
@@ -179,7 +180,8 @@ const generateArticleWithAI = async () => {
 
   /* ================= LOGOUT ================= */
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     localStorage.removeItem('isAdmin');
     router.replace('/admin/login');
   };

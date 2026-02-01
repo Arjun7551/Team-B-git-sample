@@ -44,7 +44,7 @@ export default function Navbar() {
 
       {/* ===== SIDE NAVIGATION ===== */}
       <nav
-        className={`fixed top-0 right-0 h-full w-72 z-50
+        className={`fixed top-0 right-0 h-full w-72 z-999
         bg-[#ffedd5]
         transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-full"}`}

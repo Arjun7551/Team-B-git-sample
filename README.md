@@ -6,20 +6,7 @@ Full-Stack Web Application for ISKCON Sanjeevani IT Cell
 
 The Vedic Encyclopedia System is a full-stack content management platform developed for **ISKCON Sanjeevani IT Cell** to manage, organize, and publish structured Vedic articles.
 
-The system provides secure admin access, categorized article management, and controlled publishing workflows with role-based data protection.
-
----
-
-## Problem Statement
-
-Managing Vedic articles manually leads to:
-
-* Lack of structured categorization
-* No controlled publishing workflow
-* No role-based access security
-* Difficulty in scalable content management
-
-This platform solves those problems with a secure, database-driven architecture.
+The system provides secure admin authentication, categorized article management, and controlled publishing workflows with role-based database-level security.
 
 ---
 
@@ -39,37 +26,37 @@ This platform solves those problems with a secure, database-driven architecture.
 ### Draft & Publish Workflow
 
 * Articles stored with status control (`draft` / `published`)
-* Only published articles visible to public users
+* Only published articles are visible on the public interface
 
 ### Role-Based Access Control
 
 * Implemented Supabase Row Level Security (RLS)
-* Restricted article creation/editing to authorized users
-* Enforced database-level access policies
+* Restricted article creation, editing, and deletion to authorized admins
+* Enforced access policies at database level
 
 ### Responsive UI
 
 * Built using Next.js App Router
 * Styled with Tailwind CSS
-* Optimized for clean content readability
+* Optimized for structured content readability
 
 ---
 
 ## Tech Stack
 
-Frontend:
+**Frontend**
 
 * Next.js (App Router)
 * React
 * Tailwind CSS
 
-Backend:
+**Backend**
 
 * Supabase (PostgreSQL)
 * Supabase Authentication
 * Row Level Security (RLS)
 
-Deployment:
+**Deployment**
 
 * Vercel
 
@@ -77,47 +64,51 @@ Deployment:
 
 ## Database Design
 
-Core Tables:
+The application uses PostgreSQL via Supabase with the following schema:
 
-* `categories`
-* `articles`
-* `users`
+### `articles`
 
-Key Relationships:
+* `id` (uuid, primary key)
+* `title` (text)
+* `content` (text)
+* `category_id` (uuid, foreign key → categories.id)
+* `created_at` (timestamptz)
+* `status` (text)
 
-* Each article belongs to a category
-* Article status controls visibility
-* RLS ensures secure row-level data access
+### `categories`
+
+* `id` (uuid, primary key)
+* `name` (text)
+* `created_at` (timestamptz)
+* `description` (text)
+* `image` (text)
+
+### `admins`
+
+* `id` (uuid, primary key)
+* `email` (text)
+* `created_at` (timestamptz)
+
+### Relationships
+
+* One category can have multiple articles
+* Each article belongs to one category via `category_id`
+* Admins are authenticated users allowed to manage content
 
 ---
 
 ## Security Implementation
 
-* Supabase Auth for admin access
-* Protected routes in frontend
-* Database-level RLS policies for:
+* Supabase Auth for admin login
+* Protected frontend routes
+* Database-level Row Level Security policies for:
 
-  * Insert
-  * Update
-  * Delete
-  * Select
+  * SELECT
+  * INSERT
+  * UPDATE
+  * DELETE
 
-Security logic is enforced at the database layer, not just UI level.
-
----
-
-## Project Structure
-
-```
-/app
-  /admin
-  /articles
-  /categories
-/components
-/lib
-```
-
-Modular component-based structure following Next.js best practices.
+All sensitive access control is enforced at the database layer.
 
 ---
 
@@ -130,15 +121,8 @@ Live Project:
 
 ## Learning Outcomes
 
-* Real-world database schema design
+* Relational schema design with foreign keys
 * Implementing Row Level Security policies
 * Secure authentication workflows
-* Team collaboration in a full-stack environment
-* Production-style deployment
-
----
-
-## Contributors
-
-Developed as a team project under
-**ISKCON Sanjeevani IT Cell**
+* Full-stack collaboration in a production-style project
+* Deployment using Vercel
